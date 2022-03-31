@@ -28,13 +28,25 @@ class Block {
 class BlockChain {
     constructor() {
         this.chain = [];
-        this.addBlock(new Block("GENESIS BLOCK"));
+        this.addBlock(this.createGenesisBlock());
+    }
+
+    createGenesisBlock() {
+        return new Block("GENESIS BLOCK");
+    }
+
+    getLasBlockDetail() {
+        return this.chain[this.chain.length-1];
     }
 
     addBlock(newBlock) {
+        //Defining other property of BlockChain class, Automatic properties
+        newBlock.height = this.chain.length;
+        newBlock.time = new Date().getTime().toString().slice(0,-3);
+
         if (this.chain.length > 0) {
             //getting previous hash of course, if not a genesis block being added.
-            let lastBlockHash = this.chain[this.chain.length - 1].hash; 
+            let lastBlockHash = this.getLasBlockDetail().hash;
             newBlock.previousBlockHash = lastBlockHash;
         }
         //Creating the hash for this block being created.
