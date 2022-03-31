@@ -7,7 +7,7 @@ const SHA256 = require('crypto-js/sha256');
 
 class Block {
     constructor(data) {
-        this.hash = "GENESIS BLOCK";
+        this.hash = "";
         this.height = 0;
         this.body = data;
         this.time = 0;
@@ -28,6 +28,7 @@ class Block {
 class BlockChain {
     constructor() {
         this.chain = [];
+        this.addBlock(new Block("GENESIS BLOCK"));
     }
 
     addBlock(newBlock) {
