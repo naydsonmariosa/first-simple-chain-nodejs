@@ -1,3 +1,5 @@
+const SHA256 = require('crypto-js/sha256');
+
 /* ===== Block Class ===================================
 |  Class with a constructor for block data model       |
 |  ====================================================*/
@@ -5,7 +7,7 @@
 
 class Block {
     constructor(data) {
-        this.hash = "";
+        this.hash = "GENESIS BLOCK";
         this.height = 0;
         this.body = data;
         this.time = 0;
