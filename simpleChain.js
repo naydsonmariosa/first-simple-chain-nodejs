@@ -31,6 +31,15 @@ class BlockChain {
     }
 
     addBlock(newBlock) {
+        if (this.chain.length > 0) {
+            //getting previous hash of course, if not a genesis block being added.
+            let lastBlockHash = this.chain[this.chain.length - 1].hash; 
+            newBlock.previousBlockHash = lastBlockHash;
+        }
+        //Creating the hash for this block being created.
+        newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+        
+        //finnaly we will add the new block to the chain;
         this.chain.push(newBlock);
     }
 }
